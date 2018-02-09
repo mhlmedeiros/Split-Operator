@@ -36,11 +36,11 @@ x = linspace(-Lx/2, Lx/2, Nx+1)[1:end-1];
 y = linspace(-Ly/2, Ly/2, Ny+1)[1:end-1];
 dx = x[2] - x[1];
 dy = y[2] - y[1];
-X = kron(x', ones(Ny));
-Y = kron(ones(Nx)', y);
+X = kron(x', ones(Ny))
+Y = kron(ones(Nx)', y)
 
 ################################################################################
-                    # Espaço-k (na dimensãolongitudinal à tira)
+                    # Espaço-k (na dimensão longitudinal à tira)
 ################################################################################
 # A array "kx" deve ser 'invertida' via 'fftshift' para que todas as
 # as funções de 'kx' possam ser multiplicadas elementwise sem confusão
@@ -60,7 +60,7 @@ k0_y = pi/(2*dy);
 
 # Note que a condição inicial está representada no espaço de posição.
 
-x_0 = 0; #  centro do pacote
+x_0 = -50; #  centro do pacote
 y_0 = 0; #  centro do pacote
 sigma_x = 30.0; # largura longitudinal
 sigma_y = 30.0; # largura transversal
@@ -87,10 +87,10 @@ V_degrau = α./(e.^(-β*(X-γ))+1);
 
 # Cinética:
 # matrizes Tridiagonais (Ny x Ny)
-d2dy2 = 1/(dy^2) * SymTridiagonal(-2*ones(Ny), ones(Ny-1));
+d2dy2 = 1/(dy^2) * SymTridiagonal(-2*ones(Ny), ones(Ny-1))
 
-T_y  = - h2m * full(d2dy2);
-T_kx =   h2m * kx.^2;
+T_y  = - h2m * full(d2dy2)
+T_kx =   h2m * kx.^2
 
 
 ################################################################################
@@ -194,23 +194,23 @@ end
                         # Apresentação dos resultados
 ################################################################################
 
-# Ψ_1 = psit(Ψ_0, 2.0, 6)
-# # Ψ_1 = psit_livre(Ψ_0, 2)
-#
-# figure(1)
-# pcolormesh(x,y,abs(Ψ_1).^2)
-# ylim(-200,200)
-# title("Gaussian distribution");
-# xlabel(L"$x$");
-# ylabel(L"$y$");
-#
-#
-# figure(2)
-# pcolormesh(X,Y,V_degrau)
-# ylim(-200,200)
-# title("Potential function");
-# xlabel(L"$x$");
-# ylabel(L"$y$");
-# colorbar()
+Ψ_1 = psit(Ψ_0, 2.0, 6)
+# Ψ_1 = psit_livre(Ψ_0, 2)
 
-simula_potencial(t_final=10.0,N_steps=100,intervalo_frames=50)
+figure(1)
+pcolormesh(x,y,abs(Ψ_1).^2)
+ylim(-200,200)
+title("Gaussian distribution");
+xlabel(L"$x$");
+ylabel(L"$y$");
+
+
+figure(2)
+pcolormesh(X,Y,V_degrau)
+ylim(-200,200)
+title("Potential function");
+xlabel(L"$x$");
+ylabel(L"$y$");
+colorbar()
+
+# simula_potencial(t_final=10.0,N_steps=100,intervalo_frames=50)
