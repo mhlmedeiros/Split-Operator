@@ -8,9 +8,6 @@
 
 include("save_the_data.jl")
 
-PyPlot.matplotlib[:rc]("text", usetex=true) # allow tex rendering
-PyPlot.matplotlib[:rc]("font", family="serif")
-
 # constantes físicas
 Ry = 13.6056917253e3; # meV
 a0 = 0.0529177208319; # nm
@@ -86,4 +83,10 @@ atr_pot = Dict("altura" => round(α,1),
                         "posição" => round(γ,1));
 
 
-save_them_all(nome_arquivo, nome_grupo, nome_subg, ψ_1, nome_dados, atr_cond_ini,  atr_pot)
+save_them_all( nome_arquivo, 
+               nome_grupo,
+               nome_subg,
+               ψ_1,
+               nome_dados,
+               atr_cond_ini,
+               atr_pot);
